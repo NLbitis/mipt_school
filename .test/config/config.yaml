@@ -20,6 +20,7 @@ filtering:
 
 processing:
   remove-duplicates: true
+  minimap2: true
   # restrict-regions: ../raw/captured_regions.bed
   # region-padding: 100
 

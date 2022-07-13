@@ -72,7 +72,7 @@ rule map_reads:
 # тут поменяли input для того, чтобы выбирать между двумя равнялками.
 rule mark_duplicates:
     input:
-        "results/mapped/{sample}-{unit}.sorted.minimap.bam" if config["processing"]["minimap"] else "results/mapped/{sample}-{unit}.sorted.bam"
+        "results/mapped/{sample}-{unit}.sorted.minimap.bam" if config["processing"]["minimap2"] else "results/mapped/{sample}-{unit}.sorted.bam"
     output:
         bam=temp("results/dedup/{sample}-{unit}.bam"),
         metrics="results/qc/dedup/{sample}-{unit}.metrics.txt",
