@@ -98,14 +98,21 @@ rule bwa_index:
     wrapper:
         "0.74.0/bio/bwa/index"
 
-
-rule minimap_index:
+rule build_minimap2_index:
     input:
         "resources/genome.fasta",
     output:
-        "resources/genome.fasta.mni"
+        "resources/genome.fasta.mmi"
     shell:
-        "minimap2 -d {output} {input}  "
+        "minimap2 -d {output} {input}"
+
+# rule minimap_index:
+#     input:
+#         "resources/genome.fasta",
+#     output:
+#         "resources/genome.fasta.mni"
+#     shell:
+#         "minimap2 -d {output} {input}  "
 
 rule get_vep_cache:
     output:
