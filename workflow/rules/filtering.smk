@@ -1,9 +1,9 @@
 rule select_calls:
     input:
         ref="resources/genome.fasta",
-        vcf="genotyped/all.vcf.gz",
+        vcf="results/genotyped/all.vcf.gz",
     output:
-        vcf=temp("filtered/all.{vartype}.vcf.gz"),
+        vcf=temp("results/filtered/all.{vartype}.vcf.gz"),
     params:
         extra=get_vartype_arg,
     log:
@@ -15,42 +15,42 @@ rule select_calls:
 rule hard_filter_calls:
     input:
         ref="resources/genome.fasta",
-        vcf="filtered/all.{vartype}.vcf.gz",
+        vcf="results/filtered/all.{vartype}.vcf.gz",
     output:
-        vcf=temp("filtered/all.{vartype}.hardfiltered.vcf.gz"),
+        vcf=temp("results/filtered/all.{vartype}.hardfiltered.vcf.gz"),
     params:
         filters=get_filter,
     log:
         "logs/gatk/variantfiltration/{vartype}.log",
     wrapper:
-        "0.59.2/bio/gatk/variantfiltration"
+        "0.74.0/bio/gatk/variantfiltration"
 
 
 rule recalibrate_calls:
     input:
-        vcf="filtered/all.{vartype}.vcf.gz",
+        vcf="results/filtered/all.{vartype}.vcf.gz",
     output:
-        vcf=temp("filtered/all.{vartype}.recalibrated.vcf.gz"),
+        vcf=temp("results/filtered/all.{vartype}.recalibrated.vcf.gz"),
     params:
         extra=config["params"]["gatk"]["VariantRecalibrator"],
     log:
         "logs/gatk/variantrecalibrator/{vartype}.log",
     wrapper:
-        "0.59.2/bio/gatk/variantrecalibrator"
+        "0.74.0/bio/gatk/variantrecalibrator"
 
 
 rule merge_calls:
     input:
         vcfs=expand(
-            "filtered/all.{vartype}.{filtertype}.vcf.gz",
+            "results/filtered/all.{vartype}.{filtertype}.vcf.gz",
             vartype=["snvs", "indels"],
             filtertype="recalibrated"
             if config["filtering"]["vqsr"]
             else "hardfiltered",
         ),
     output:
-        vcf="filtered/all.vcf.gz",
+        vcf="results/filtered/all.vcf.gz",
     log:
         "logs/picard/merge-filtered.log",
     wrapper:
-        "0.59.2/bio/picard/mergevcfs"
+        "0.74.0/bio/picard/mergevcfs"
