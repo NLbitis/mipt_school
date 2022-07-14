@@ -1,0 +1,67 @@
+Using GATK jar /home-local/conda_envs/dcfdb462d457174b178adfac97b3d10b/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar /home-local/conda_envs/dcfdb462d457174b178adfac97b3d10b/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar HaplotypeCaller --intervals VIII -R resources/genome.fasta -I results/recal/B-1.bam -I results/recal/B-2.bam -ERC GVCF -O results/called/B.VIII.g.vcf.gz --dbsnp resources/variation.noiupac.vcf.gz
+19:05:17.145 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home-local/conda_envs/dcfdb462d457174b178adfac97b3d10b/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar!/com/intel/gkl/native/libgkl_compression.so
+Jul 13, 2022 7:05:18 PM shaded.cloud_nio.com.google.auth.oauth2.ComputeEngineCredentials runningOnComputeEngine
+INFO: Failed to detect whether we are running on Google Compute Engine.
+19:05:18.370 INFO  HaplotypeCaller - ------------------------------------------------------------
+19:05:18.370 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.1.4.1
+19:05:18.371 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
+19:05:18.381 INFO  HaplotypeCaller - Executing as user@cbaipipelines3 on Linux v5.15.0-40-generic amd64
+19:05:18.381 INFO  HaplotypeCaller - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_332-b09
+19:05:18.381 INFO  HaplotypeCaller - Start Date/Time: July 13, 2022 7:05:17 PM MSK
+19:05:18.381 INFO  HaplotypeCaller - ------------------------------------------------------------
+19:05:18.381 INFO  HaplotypeCaller - ------------------------------------------------------------
+19:05:18.381 INFO  HaplotypeCaller - HTSJDK Version: 2.21.0
+19:05:18.381 INFO  HaplotypeCaller - Picard Version: 2.21.2
+19:05:18.382 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+19:05:18.382 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+19:05:18.382 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+19:05:18.382 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+19:05:18.382 INFO  HaplotypeCaller - Deflater: IntelDeflater
+19:05:18.382 INFO  HaplotypeCaller - Inflater: IntelInflater
+19:05:18.382 INFO  HaplotypeCaller - GCS max retries/reopens: 20
+19:05:18.382 INFO  HaplotypeCaller - Requester pays: disabled
+19:05:18.382 INFO  HaplotypeCaller - Initializing engine
+WARNING: BAM index file /home-local/lebedev/git_rep/mipt_school/workflow/results/recal/B-1.bai is older than BAM /home-local/lebedev/git_rep/mipt_school/workflow/results/recal/B-1.bam
+WARNING: BAM index file /home-local/lebedev/git_rep/mipt_school/workflow/results/recal/B-2.bai is older than BAM /home-local/lebedev/git_rep/mipt_school/workflow/results/recal/B-2.bam
+19:05:20.000 INFO  FeatureManager - Using codec VCFCodec to read file file:///home-local/lebedev/git_rep/mipt_school/workflow/resources/variation.noiupac.vcf.gz
+19:05:20.132 INFO  IntervalArgumentCollection - Processing 562643 bp from intervals
+19:05:20.139 INFO  HaplotypeCaller - Done initializing engine
+19:05:20.158 INFO  HaplotypeCallerEngine - Tool is in reference confidence mode and the annotation, the following changes will be made to any specified annotations: 'StrandBiasBySample' will be enabled. 'ChromosomeCounts', 'FisherStrand', 'StrandOddsRatio' and 'QualByDepth' annotations have been disabled
+19:05:20.170 INFO  HaplotypeCallerEngine - Standard Emitting and Calling confidence set to 0.0 for reference-model confidence output
+19:05:20.170 INFO  HaplotypeCallerEngine - All sites annotated with PLs forced to true for reference-model confidence output
+19:05:20.240 INFO  NativeLibraryLoader - Loading libgkl_utils.so from jar:file:/home-local/conda_envs/dcfdb462d457174b178adfac97b3d10b/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar!/com/intel/gkl/native/libgkl_utils.so
+19:05:20.243 INFO  NativeLibraryLoader - Loading libgkl_pairhmm_omp.so from jar:file:/home-local/conda_envs/dcfdb462d457174b178adfac97b3d10b/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar!/com/intel/gkl/native/libgkl_pairhmm_omp.so
+19:05:20.398 INFO  IntelPairHmm - Flush-to-zero (FTZ) is enabled when running PairHMM
+19:05:20.408 INFO  IntelPairHmm - Available threads: 1
+19:05:20.408 INFO  IntelPairHmm - Requested threads: 4
+19:05:20.408 WARN  IntelPairHmm - Using 1 available threads, but 4 were requested
+19:05:20.408 INFO  PairHMM - Using the OpenMP multi-threaded AVX-accelerated native PairHMM implementation
+19:05:20.567 INFO  ProgressMeter - Starting traversal
+19:05:20.567 INFO  ProgressMeter -        Current Locus  Elapsed Minutes     Regions Processed   Regions/Minute
+19:05:21.889 WARN  InbreedingCoeff - InbreedingCoeff will not be calculated; at least 10 samples must have called genotypes
+19:05:30.865 INFO  ProgressMeter -           VIII:46413              0.2                   230           1340.2
+19:05:41.048 INFO  ProgressMeter -          VIII:123025              0.3                   620           1816.3
+19:05:51.220 INFO  ProgressMeter -          VIII:249003              0.5                  1230           2407.6
+19:06:01.451 INFO  ProgressMeter -          VIII:382258              0.7                  1860           2729.7
+19:06:11.498 INFO  ProgressMeter -          VIII:525312              0.8                  2570           3027.6
+19:06:12.032 INFO  HaplotypeCaller - 536 read(s) filtered by: ((((((((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter) AND NonZeroReferenceLengthAlignmentReadFilter) AND GoodCigarReadFilter) AND WellformedReadFilter)
+  536 read(s) filtered by: (((((((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter) AND NonZeroReferenceLengthAlignmentReadFilter) AND GoodCigarReadFilter)
+      536 read(s) filtered by: ((((((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter) AND NonZeroReferenceLengthAlignmentReadFilter)
+          536 read(s) filtered by: (((((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter)
+              536 read(s) filtered by: ((((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter)
+                  535 read(s) filtered by: (((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter)
+                      535 read(s) filtered by: ((MappingQualityReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter)
+                          535 read(s) filtered by: (MappingQualityReadFilter AND MappingQualityAvailableReadFilter)
+                              535 read(s) filtered by: MappingQualityReadFilter 
+                  1 read(s) filtered by: NotDuplicateReadFilter 
+
+19:06:12.032 INFO  ProgressMeter -          VIII:562495              0.9                  2710           3159.4
+19:06:12.037 INFO  ProgressMeter - Traversal complete. Processed 2710 total regions in 0.9 minutes.
+19:06:12.065 INFO  VectorLoglessPairHMM - Time spent in setup for JNI call : 0.008764634
+19:06:12.065 INFO  PairHMM - Total compute time in PairHMM computeLogLikelihoods() : 0.7249168340000001
+19:06:12.065 INFO  SmithWatermanAligner - Total compute time in java Smith-Waterman : 1.46 sec
+19:06:12.066 INFO  HaplotypeCaller - Shutting down engine
+[July 13, 2022 7:06:12 PM MSK] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.92 minutes.
+Runtime.totalMemory()=577241088

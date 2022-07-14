@@ -1,0 +1,107 @@
+Workflow defines that rule get_genome is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_faidx is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_dict is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule get_known_variation is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule remove_iupac_codes is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule tabix_known_variants is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule bwa_index is eligible for caching between workflows (use the --cache argument to enable this).
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Singularity containers: ignored
+Job stats:
+job                                 count    min threads    max threads
+--------------------------------  -------  -------------  -------------
+all                                     1              1              1
+annotate_variants                       1              4              4
+apply_base_quality_recalibration        3              1              1
+call_variants                          34              1              1
+combine_calls                          17              1              1
+genotype_variants                      17              1              1
+hard_filter_calls                       2              1              1
+mark_duplicates                         3              1              1
+merge_calls                             1              1              1
+merge_variants                          1              1              1
+minimap2_mapping                        3              1              1
+multiqc                                 1              1              1
+plot_stats                              1              1              1
+recalibrate_base_qualities              3              1              1
+samtools_stats                          3              1              1
+select_calls                            2              1              1
+vcf_to_tsv                              1              1              1
+total                                  94              1              4
+
+Select jobs to execute...
+
+[Wed Jul 13 19:00:08 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-2.sorted.minimap.bam
+    log: logs/minimap/B-2.log
+    jobid: 33
+    reason: Missing output files: results/mapped/B-2.sorted.minimap.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+
+[Wed Jul 13 19:00:08 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-1.1.fastq.gz, results/trimmed/B-1.2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-1.sorted.minimap.bam
+    log: logs/minimap/B-1.log
+    jobid: 27
+    reason: Missing output files: results/mapped/B-1.sorted.minimap.bam
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+
+[Wed Jul 13 19:00:08 2022]
+rule minimap2_mapping:
+    input: results/trimmed/A-1.1.fastq.gz, results/trimmed/A-1.2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/A-1.sorted.minimap.bam
+    log: logs/minimap/A-1.log
+    jobid: 16
+    reason: Missing output files: results/mapped/A-1.sorted.minimap.bam
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:00:21 2022]
+Error in rule minimap2_mapping:
+    jobid: 33
+    output: results/mapped/B-2.sorted.minimap.bam
+    log: logs/minimap/B-2.log (check log file(s) for error message)
+    shell:
+        
+        minimap2 -Y  -ax sr  -R '@RG\tID:~B\tSM:~B\tPL:BGI\tLB:lib1\tPU:unit1' resources/genome.fasta.mmi results/trimmed/B-2.fastq.gz
+        samtools view -b -h results/mapped/test.sam -o results/mapped/B-2.sorted.minimap.bam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Terminating processes on user request, this might take some time.
+[Wed Jul 13 19:00:21 2022]
+Error in rule minimap2_mapping:
+    jobid: 27
+    output: results/mapped/B-1.sorted.minimap.bam
+    log: logs/minimap/B-1.log (check log file(s) for error message)
+    shell:
+        
+        minimap2 -Y  -ax sr  -R '@RG\tID:~B\tSM:~B\tPL:BGI\tLB:lib1\tPU:unit1' resources/genome.fasta.mmi results/trimmed/B-1.1.fastq.gz results/trimmed/B-1.2.fastq.gz
+        samtools view -b -h results/mapped/test.sam -o results/mapped/B-1.sorted.minimap.bam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Wed Jul 13 19:00:21 2022]
+Error in rule minimap2_mapping:
+    jobid: 16
+    output: results/mapped/A-1.sorted.minimap.bam
+    log: logs/minimap/A-1.log (check log file(s) for error message)
+    shell:
+        
+        minimap2 -Y  -ax sr  -R '@RG\tID:~A\tSM:~A\tPL:BGI\tLB:lib1\tPU:unit1' resources/genome.fasta.mmi results/trimmed/A-1.1.fastq.gz results/trimmed/A-1.2.fastq.gz
+        samtools view -b -h results/mapped/test.sam -o results/mapped/A-1.sorted.minimap.bam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: .snakemake/log/2022-07-13T185920.961049.snakemake.log

@@ -1,0 +1,5 @@
+TrimmomaticSE: Started with arguments:
+ -threads 1 data/reads.1.fq.gz results/trimmed/B-2.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+Quality encoding detected as phred33
+Input Reads: 50000 Surviving: 50000 (100.00%) Dropped: 0 (0.00%)
+TrimmomaticSE: Completed successfully

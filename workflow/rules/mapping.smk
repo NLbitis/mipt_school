@@ -38,7 +38,7 @@ rule minimap2_mapping:
     log:
         "logs/minimap/{sample}-{unit}.log",
     shell:
-        "minimap2 -Y -t -ax sr {input.idx} {input.reads} >&2 {log} | samtools sort -O bam -o {output}"
+        "minimap2 -Y -ax sr {input.idx} {input.reads} 2> {log} | samtools sort -O bam -o {output}"
 
 # #  sort reads
 # rule map_reads_with_minimap:
@@ -69,7 +69,6 @@ rule map_reads:
     wrapper:
         "0.74.0/bio/bwa/mem"
 
-# тут поменяли input для того, чтобы выбирать между двумя равнялками.
 rule mark_duplicates:
     input:
         "results/mapped/{sample}-{unit}.sorted.minimap.bam" if config["processing"]["minimap2"] else "results/mapped/{sample}-{unit}.sorted.bam"

@@ -1,0 +1,4 @@
+WorkflowError in line 15 of /home-local/lebedev/git_rep/mipt_school/workflow/rules/common.smk:
+Workflow defines configfile config/config.yaml but it is not present or accessible.
+  File "/home-local/lebedev/git_rep/mipt_school/workflow/Snakefile", line 1, in <module>
+  File "/home-local/lebedev/git_rep/mipt_school/workflow/rules/common.smk", line 15, in <module>

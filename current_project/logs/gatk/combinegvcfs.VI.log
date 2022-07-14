@@ -1,0 +1,36 @@
+Using GATK jar /home-local/conda_envs/9895bac3e72b4b3452f644e11a74d608/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar /home-local/conda_envs/9895bac3e72b4b3452f644e11a74d608/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar CombineGVCFs -V results/called/A.VI.g.vcf.gz -V results/called/B.VI.g.vcf.gz -R resources/genome.fasta -O results/called/all.VI.g.vcf.gz
+19:08:45.782 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home-local/conda_envs/9895bac3e72b4b3452f644e11a74d608/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar!/com/intel/gkl/native/libgkl_compression.so
+Jul 13, 2022 7:08:46 PM shaded.cloud_nio.com.google.auth.oauth2.ComputeEngineCredentials runningOnComputeEngine
+INFO: Failed to detect whether we are running on Google Compute Engine.
+19:08:46.684 INFO  CombineGVCFs - ------------------------------------------------------------
+19:08:46.685 INFO  CombineGVCFs - The Genome Analysis Toolkit (GATK) v4.1.4.1
+19:08:46.685 INFO  CombineGVCFs - For support and documentation go to https://software.broadinstitute.org/gatk/
+19:08:46.690 INFO  CombineGVCFs - Executing as user@cbaipipelines3 on Linux v5.15.0-40-generic amd64
+19:08:46.691 INFO  CombineGVCFs - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_332-b09
+19:08:46.691 INFO  CombineGVCFs - Start Date/Time: July 13, 2022 7:08:45 PM MSK
+19:08:46.691 INFO  CombineGVCFs - ------------------------------------------------------------
+19:08:46.691 INFO  CombineGVCFs - ------------------------------------------------------------
+19:08:46.692 INFO  CombineGVCFs - HTSJDK Version: 2.21.0
+19:08:46.693 INFO  CombineGVCFs - Picard Version: 2.21.2
+19:08:46.693 INFO  CombineGVCFs - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+19:08:46.693 INFO  CombineGVCFs - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+19:08:46.694 INFO  CombineGVCFs - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+19:08:46.694 INFO  CombineGVCFs - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+19:08:46.694 INFO  CombineGVCFs - Deflater: IntelDeflater
+19:08:46.694 INFO  CombineGVCFs - Inflater: IntelInflater
+19:08:46.694 INFO  CombineGVCFs - GCS max retries/reopens: 20
+19:08:46.694 INFO  CombineGVCFs - Requester pays: disabled
+19:08:46.694 INFO  CombineGVCFs - Initializing engine
+19:08:47.995 INFO  FeatureManager - Using codec VCFCodec to read file file:///home-local/lebedev/git_rep/mipt_school/workflow/results/called/A.VI.g.vcf.gz
+19:08:48.075 INFO  FeatureManager - Using codec VCFCodec to read file file:///home-local/lebedev/git_rep/mipt_school/workflow/results/called/B.VI.g.vcf.gz
+19:08:48.343 INFO  CombineGVCFs - Done initializing engine
+19:08:48.448 INFO  ProgressMeter - Starting traversal
+19:08:48.448 INFO  ProgressMeter -        Current Locus  Elapsed Minutes    Variants Processed  Variants/Minute
+19:08:48.670 WARN  ReferenceConfidenceVariantContextMerger - Detected invalid annotations: When trying to merge variant contexts at location VI:1339 the annotation MLEAC=[1, 0] was not a numerical value and was ignored
+19:08:51.665 INFO  ProgressMeter -            VI:256047              0.1                 11630         216910.2
+19:08:51.666 INFO  ProgressMeter - Traversal complete. Processed 11630 total variants in 0.1 minutes.
+19:08:51.671 INFO  CombineGVCFs - Shutting down engine
+[July 13, 2022 7:08:51 PM MSK] org.broadinstitute.hellbender.tools.walkers.CombineGVCFs done. Elapsed time: 0.10 minutes.
+Runtime.totalMemory()=338165760

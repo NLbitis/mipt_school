@@ -1,0 +1,219 @@
+Workflow defines that rule get_genome is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_faidx is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_dict is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule get_known_variation is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule remove_iupac_codes is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule tabix_known_variants is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule bwa_index is eligible for caching between workflows (use the --cache argument to enable this).
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Singularity containers: ignored
+Job stats:
+job                                 count    min threads    max threads
+--------------------------------  -------  -------------  -------------
+all                                     1              1              1
+annotate_variants                       1              4              4
+apply_base_quality_recalibration        3              1              1
+build_minimap2_index                    1              1              1
+genome_dict                             1              1              1
+genome_faidx                            1              1              1
+get_genome                              1              1              1
+get_known_variation                     1              1              1
+get_vep_cache                           1              1              1
+get_vep_plugins                         1              1              1
+hard_filter_calls                       2              1              1
+mark_duplicates                         3              1              1
+merge_calls                             1              1              1
+merge_variants                          1              1              1
+minimap2_mapping                        3              1              1
+multiqc                                 1              1              1
+plot_stats                              1              1              1
+recalibrate_base_qualities              3              1              1
+remove_iupac_codes                      1              1              1
+samtools_stats                          3              1              1
+select_calls                            2              1              1
+tabix_known_variants                    1              1              1
+trim_reads_pe                           2              1              1
+trim_reads_se                           1              1              1
+vcf_to_tsv                              1              1              1
+total                                  38              1              4
+
+Select jobs to execute...
+
+[Wed Jul 13 18:44:41 2022]
+rule trim_reads_se:
+    input: data/reads.1.fq.gz
+    output: results/trimmed/B-2.fastq.gz
+    log: logs/trimmomatic/B-2.log
+    jobid: 34
+    reason: Missing output files: results/trimmed/B-2.fastq.gz
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:41 2022]
+rule get_vep_cache:
+    output: resources/vep/cache
+    log: logs/vep/cache.log
+    jobid: 10
+    reason: Missing output files: resources/vep/cache
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:41 2022]
+rule get_vep_plugins:
+    output: resources/vep/plugins
+    log: logs/vep/plugins.log
+    jobid: 11
+    reason: Missing output files: resources/vep/plugins
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:41 2022]
+rule trim_reads_pe:
+    input: data/reads.1.fq.gz, data/reads.2.fq.gz
+    output: results/trimmed/B-1.1.fastq.gz, results/trimmed/B-1.2.fastq.gz, results/trimmed/B-1.1.unpaired.fastq.gz, results/trimmed/B-1.2.unpaired.fastq.gz, results/trimmed/B-1.trimlog.txt
+    log: logs/trimmomatic/B-1.log
+    jobid: 28
+    reason: Missing output files: results/trimmed/B-1.2.fastq.gz, results/trimmed/B-1.1.fastq.gz
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:41 2022]
+rule get_genome:
+    output: resources/genome.fasta
+    log: logs/get-genome.log
+    jobid: 4
+    reason: Missing output files: resources/genome.fasta
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:41 2022]
+rule trim_reads_pe:
+    input: data/reads.1.fq.gz, data/reads.2.fq.gz
+    output: results/trimmed/A-1.1.fastq.gz, results/trimmed/A-1.2.fastq.gz, results/trimmed/A-1.1.unpaired.fastq.gz, results/trimmed/A-1.2.unpaired.fastq.gz, results/trimmed/A-1.trimlog.txt
+    log: logs/trimmomatic/A-1.log
+    jobid: 17
+    reason: Missing output files: results/trimmed/A-1.1.fastq.gz, results/trimmed/A-1.2.fastq.gz
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/a9ec233b1edc56943bd5d9b964c0dcd1
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/3eb7a9a9aff93d46cdc9ba10a5ca16c8
+Activating conda environment: ../../../../conda_envs/f5cab5b87aa886fd3b79f0eca4dc496f
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/0bf7d92014f7b444a9042d49ba940ddd
+Activating conda environment: ../../../../conda_envs/a9ec233b1edc56943bd5d9b964c0dcd1
+Activating conda environment: ../../../../conda_envs/3eb7a9a9aff93d46cdc9ba10a5ca16c8
+[Wed Jul 13 18:44:44 2022]
+Finished job 11.
+1 of 38 steps (3%) done
+[Wed Jul 13 18:44:46 2022]
+Finished job 34.
+2 of 38 steps (5%) done
+[Wed Jul 13 18:44:51 2022]
+Finished job 4.
+3 of 38 steps (8%) done
+Select jobs to execute...
+
+[Wed Jul 13 18:44:51 2022]
+rule build_minimap2_index:
+    input: resources/genome.fasta
+    output: resources/genome.fasta.mmi
+    jobid: 18
+    reason: Missing output files: resources/genome.fasta.mmi; Input files updated by another job: resources/genome.fasta
+    resources: tmpdir=/tmp
+
+
+[Wed Jul 13 18:44:51 2022]
+rule genome_dict:
+    input: resources/genome.fasta
+    output: resources/genome.dict
+    log: logs/samtools/create_dict.log
+    jobid: 19
+    reason: Missing output files: resources/genome.dict; Input files updated by another job: resources/genome.fasta
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/b64a1509d68ae61f42a6bc667de7b69e
+
+[Wed Jul 13 18:44:51 2022]
+checkpoint genome_faidx:
+    input: resources/genome.fasta
+    output: resources/genome.fasta.fai
+    log: logs/genome-faidx.log
+    jobid: 7
+    reason: Missing output files: resources/genome.fasta.fai; Input files updated by another job: resources/genome.fasta
+    resources: tmpdir=/tmp
+Downstream jobs will be updated after completion.
+
+[Wed Jul 13 18:44:51 2022]
+Finished job 19.
+4 of 38 steps (11%) done
+Activating conda environment: ../../../../conda_envs/d3c18b7faef303e85ee20c974006beff
+[Wed Jul 13 18:44:51 2022]
+Finished job 18.
+5 of 38 steps (13%) done
+Select jobs to execute...
+
+[Wed Jul 13 18:44:51 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-2.sorted.minimap.bam
+    log: logs/minimap/B-2.log
+    jobid: 33
+    reason: Missing output files: results/mapped/B-2.sorted.minimap.bam; Input files updated by another job: resources/genome.fasta.mmi, results/trimmed/B-2.fastq.gz
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:52 2022]
+Finished job 28.
+6 of 38 steps (16%) done
+Removing temporary output results/trimmed/B-1.1.unpaired.fastq.gz.
+Removing temporary output results/trimmed/B-1.2.unpaired.fastq.gz.
+Select jobs to execute...
+
+[Wed Jul 13 18:44:52 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-1.1.fastq.gz, results/trimmed/B-1.2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-1.sorted.minimap.bam
+    log: logs/minimap/B-1.log
+    jobid: 27
+    reason: Missing output files: results/mapped/B-1.sorted.minimap.bam; Input files updated by another job: results/trimmed/B-1.2.fastq.gz, resources/genome.fasta.mmi, results/trimmed/B-1.1.fastq.gz
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 18:44:52 2022]
+Error in rule minimap2_mapping:
+    jobid: 33
+    output: results/mapped/B-2.sorted.minimap.bam
+    log: logs/minimap/B-2.log (check log file(s) for error message)
+    shell:
+        minimap2 -Y -t -ax sr resources/genome.fasta.mmi results/trimmed/B-2.fastq.gz >&2 logs/minimap/B-2.log | samtools sort -O bam -o results/mapped/B-2.sorted.minimap.bam
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Wed Jul 13 18:44:52 2022]
+Error in rule minimap2_mapping:
+    jobid: 27
+    output: results/mapped/B-1.sorted.minimap.bam
+    log: logs/minimap/B-1.log (check log file(s) for error message)
+    shell:
+        minimap2 -Y -t -ax sr resources/genome.fasta.mmi results/trimmed/B-1.1.fastq.gz results/trimmed/B-1.2.fastq.gz >&2 logs/minimap/B-1.log | samtools sort -O bam -o results/mapped/B-1.sorted.minimap.bam
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Wed Jul 13 18:44:52 2022]
+Finished job 17.
+7 of 38 steps (18%) done
+Removing temporary output results/trimmed/A-1.1.unpaired.fastq.gz.
+Removing temporary output results/trimmed/A-1.2.unpaired.fastq.gz.
+[Wed Jul 13 18:44:52 2022]
+Finished job 7.
+8 of 38 steps (21%) done
+[Wed Jul 13 18:45:01 2022]
+Finished job 10.
+9 of 106 steps (8%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-07-13T184426.467636.snakemake.log

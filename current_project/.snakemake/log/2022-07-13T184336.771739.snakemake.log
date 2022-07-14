@@ -1,0 +1,15 @@
+Workflow defines that rule get_genome is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_faidx is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_dict is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule get_known_variation is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule remove_iupac_codes is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule tabix_known_variants is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule bwa_index is eligible for caching between workflows (use the --cache argument to enable this).
+Building DAG of jobs...
+MissingInputException in line 15 of /home-local/lebedev/git_rep/mipt_school/workflow/rules/mapping.smk:
+Missing input files for rule trim_reads_pe:
+    output: results/trimmed/A-1.1.fastq.gz, results/trimmed/A-1.2.fastq.gz, results/trimmed/A-1.1.unpaired.fastq.gz, results/trimmed/A-1.2.unpaired.fastq.gz, results/trimmed/A-1.trimlog.txt
+    wildcards: sample=A, unit=1
+    affected files:
+        data/reads.1.fq.gz
+        data/reads.2.fq.gz

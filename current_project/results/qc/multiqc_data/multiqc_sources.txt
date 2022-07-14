@@ -1,0 +1,2 @@
+Module	Section	Sample Name	Source
+Samtools	stats	A-1	/home-local/lebedev/git_rep/mipt_school/workflow/results/qc/samtools-stats/A-1.txt

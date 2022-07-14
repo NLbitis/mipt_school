@@ -1,0 +1,36 @@
+Using GATK jar /home-local/conda_envs/874475ec9450fbcb2ac13b0adb27dc0f/share/gatk4-4.2.0.0-1/gatk-package-4.2.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar /home-local/conda_envs/874475ec9450fbcb2ac13b0adb27dc0f/share/gatk4-4.2.0.0-1/gatk-package-4.2.0.0-local.jar GenotypeGVCFs -V results/called/all.IX.g.vcf.gz -R resources/genome.fasta -O results/genotyped/all.IX.vcf.gz
+19:09:05.437 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home-local/conda_envs/874475ec9450fbcb2ac13b0adb27dc0f/share/gatk4-4.2.0.0-1/gatk-package-4.2.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+Jul 13, 2022 7:09:05 PM shaded.cloud_nio.com.google.auth.oauth2.ComputeEngineCredentials runningOnComputeEngine
+INFO: Failed to detect whether we are running on Google Compute Engine.
+19:09:05.956 INFO  GenotypeGVCFs - ------------------------------------------------------------
+19:09:05.956 INFO  GenotypeGVCFs - The Genome Analysis Toolkit (GATK) v4.2.0.0
+19:09:05.957 INFO  GenotypeGVCFs - For support and documentation go to https://software.broadinstitute.org/gatk/
+19:09:05.976 INFO  GenotypeGVCFs - Executing as user@cbaipipelines3 on Linux v5.15.0-40-generic amd64
+19:09:05.977 INFO  GenotypeGVCFs - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_332-b09
+19:09:05.977 INFO  GenotypeGVCFs - Start Date/Time: July 13, 2022 7:09:05 PM MSK
+19:09:05.977 INFO  GenotypeGVCFs - ------------------------------------------------------------
+19:09:05.977 INFO  GenotypeGVCFs - ------------------------------------------------------------
+19:09:05.978 INFO  GenotypeGVCFs - HTSJDK Version: 2.24.0
+19:09:05.978 INFO  GenotypeGVCFs - Picard Version: 2.25.0
+19:09:05.978 INFO  GenotypeGVCFs - Built for Spark Version: 2.4.5
+19:09:05.978 INFO  GenotypeGVCFs - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+19:09:05.978 INFO  GenotypeGVCFs - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+19:09:05.978 INFO  GenotypeGVCFs - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+19:09:05.978 INFO  GenotypeGVCFs - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+19:09:05.978 INFO  GenotypeGVCFs - Deflater: IntelDeflater
+19:09:05.978 INFO  GenotypeGVCFs - Inflater: IntelInflater
+19:09:05.978 INFO  GenotypeGVCFs - GCS max retries/reopens: 20
+19:09:05.978 INFO  GenotypeGVCFs - Requester pays: disabled
+19:09:05.978 INFO  GenotypeGVCFs - Initializing engine
+19:09:07.233 INFO  FeatureManager - Using codec VCFCodec to read file file:///home-local/lebedev/git_rep/mipt_school/workflow/results/called/all.IX.g.vcf.gz
+19:09:07.337 INFO  GenotypeGVCFs - Done initializing engine
+19:09:07.498 INFO  ProgressMeter - Starting traversal
+19:09:07.498 INFO  ProgressMeter -        Current Locus  Elapsed Minutes    Variants Processed  Variants/Minute
+19:09:08.955 WARN  InbreedingCoeff - InbreedingCoeff will not be calculated at position IX:37774 and possibly subsequent; at least 10 samples must have called genotypes
+19:09:14.238 INFO  ProgressMeter -            IX:412947              0.1                  9609          85540.1
+19:09:14.238 INFO  ProgressMeter - Traversal complete. Processed 9609 total variants in 0.1 minutes.
+19:09:14.256 INFO  GenotypeGVCFs - Shutting down engine
+[July 13, 2022 7:09:14 PM MSK] org.broadinstitute.hellbender.tools.walkers.GenotypeGVCFs done. Elapsed time: 0.15 minutes.
+Runtime.totalMemory()=311951360

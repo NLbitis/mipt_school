@@ -1,0 +1,1657 @@
+Workflow defines that rule get_genome is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_faidx is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule genome_dict is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule get_known_variation is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule remove_iupac_codes is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule tabix_known_variants is eligible for caching between workflows (use the --cache argument to enable this).
+Workflow defines that rule bwa_index is eligible for caching between workflows (use the --cache argument to enable this).
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Singularity containers: ignored
+Job stats:
+job                                 count    min threads    max threads
+--------------------------------  -------  -------------  -------------
+all                                     1              1              1
+annotate_variants                       1              4              4
+apply_base_quality_recalibration        3              1              1
+call_variants                          34              1              1
+combine_calls                          17              1              1
+genotype_variants                      17              1              1
+hard_filter_calls                       2              1              1
+mark_duplicates                         3              1              1
+merge_calls                             1              1              1
+merge_variants                          1              1              1
+minimap2_mapping                        3              1              1
+multiqc                                 1              1              1
+plot_stats                              1              1              1
+recalibrate_base_qualities              3              1              1
+samtools_stats                          3              1              1
+select_calls                            2              1              1
+vcf_to_tsv                              1              1              1
+total                                  94              1              4
+
+Select jobs to execute...
+
+[Wed Jul 13 19:04:25 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-1.1.fastq.gz, results/trimmed/B-1.2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-1.sorted.minimap.bam
+    log: logs/minimap/B-1.log
+    jobid: 27
+    reason: Missing output files: results/mapped/B-1.sorted.minimap.bam
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+
+[Wed Jul 13 19:04:25 2022]
+rule minimap2_mapping:
+    input: results/trimmed/A-1.1.fastq.gz, results/trimmed/A-1.2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/A-1.sorted.minimap.bam
+    log: logs/minimap/A-1.log
+    jobid: 16
+    reason: Missing output files: results/mapped/A-1.sorted.minimap.bam
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp
+
+
+[Wed Jul 13 19:04:25 2022]
+rule minimap2_mapping:
+    input: results/trimmed/B-2.fastq.gz, resources/genome.fasta.mmi
+    output: results/mapped/B-2.sorted.minimap.bam
+    log: logs/minimap/B-2.log
+    jobid: 33
+    reason: Missing output files: results/mapped/B-2.sorted.minimap.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:04:26 2022]
+Finished job 33.
+1 of 94 steps (1%) done
+Removing temporary output results/trimmed/B-2.fastq.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:04:26 2022]
+rule mark_duplicates:
+    input: results/mapped/B-2.sorted.minimap.bam
+    output: results/dedup/B-2.bam, results/qc/dedup/B-2.metrics.txt
+    log: logs/picard/dedup/B-2.log
+    jobid: 32
+    reason: Missing output files: results/dedup/B-2.bam; Input files updated by another job: results/mapped/B-2.sorted.minimap.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:04:27 2022]
+Finished job 16.
+2 of 94 steps (2%) done
+Removing temporary output results/trimmed/A-1.2.fastq.gz.
+Removing temporary output results/trimmed/A-1.1.fastq.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:04:27 2022]
+rule mark_duplicates:
+    input: results/mapped/A-1.sorted.minimap.bam
+    output: results/dedup/A-1.bam, results/qc/dedup/A-1.metrics.txt
+    log: logs/picard/dedup/A-1.log
+    jobid: 15
+    reason: Missing output files: results/dedup/A-1.bam; Input files updated by another job: results/mapped/A-1.sorted.minimap.bam
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:04:27 2022]
+Finished job 27.
+3 of 94 steps (3%) done
+Removing temporary output results/trimmed/B-1.1.fastq.gz.
+Removing temporary output results/trimmed/B-1.2.fastq.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:04:27 2022]
+rule mark_duplicates:
+    input: results/mapped/B-1.sorted.minimap.bam
+    output: results/dedup/B-1.bam, results/qc/dedup/B-1.metrics.txt
+    log: logs/picard/dedup/B-1.log
+    jobid: 26
+    reason: Missing output files: results/dedup/B-1.bam; Input files updated by another job: results/mapped/B-1.sorted.minimap.bam
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+[Wed Jul 13 19:04:39 2022]
+Finished job 32.
+4 of 94 steps (4%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:39 2022]
+rule recalibrate_base_qualities:
+    input: results/dedup/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/recal/B-2.grp
+    log: logs/gatk/bqsr/B-2.log
+    jobid: 35
+    reason: Missing output files: results/recal/B-2.grp; Input files updated by another job: results/dedup/B-2.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+[Wed Jul 13 19:04:40 2022]
+Finished job 15.
+5 of 94 steps (5%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:40 2022]
+rule recalibrate_base_qualities:
+    input: results/dedup/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/recal/A-1.grp
+    log: logs/gatk/bqsr/A-1.log
+    jobid: 20
+    reason: Missing output files: results/recal/A-1.grp; Input files updated by another job: results/dedup/A-1.bam
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+[Wed Jul 13 19:04:40 2022]
+Finished job 26.
+6 of 94 steps (6%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:40 2022]
+rule recalibrate_base_qualities:
+    input: results/dedup/B-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/recal/B-1.grp
+    log: logs/gatk/bqsr/B-1.log
+    jobid: 29
+    reason: Missing output files: results/recal/B-1.grp; Input files updated by another job: results/dedup/B-1.bam
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+[Wed Jul 13 19:04:50 2022]
+Finished job 35.
+7 of 94 steps (7%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:50 2022]
+rule apply_base_quality_recalibration:
+    input: results/dedup/B-2.bam, resources/genome.fasta, resources/genome.dict, results/recal/B-2.grp
+    output: results/recal/B-2.bam
+    log: logs/gatk/apply-bqsr/B-2.log
+    jobid: 31
+    reason: Missing output files: results/recal/B-2.bam; Input files updated by another job: results/recal/B-2.grp, results/dedup/B-2.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+[Wed Jul 13 19:04:52 2022]
+Finished job 29.
+8 of 94 steps (9%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:52 2022]
+rule apply_base_quality_recalibration:
+    input: results/dedup/B-1.bam, resources/genome.fasta, resources/genome.dict, results/recal/B-1.grp
+    output: results/recal/B-1.bam
+    log: logs/gatk/apply-bqsr/B-1.log
+    jobid: 25
+    reason: Missing output files: results/recal/B-1.bam; Input files updated by another job: results/dedup/B-1.bam, results/recal/B-1.grp
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+[Wed Jul 13 19:04:57 2022]
+Finished job 20.
+9 of 94 steps (10%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:04:57 2022]
+rule apply_base_quality_recalibration:
+    input: results/dedup/A-1.bam, resources/genome.fasta, resources/genome.dict, results/recal/A-1.grp
+    output: results/recal/A-1.bam
+    log: logs/gatk/apply-bqsr/A-1.log
+    jobid: 14
+    reason: Missing output files: results/recal/A-1.bam; Input files updated by another job: results/dedup/A-1.bam, results/recal/A-1.grp
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp, mem_mb=1024
+
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Activating conda environment: ../../../../conda_envs/f580cae62d547c29feb2115e61e8b16b
+Write-protecting output file results/recal/B-2.bam.
+[Wed Jul 13 19:04:59 2022]
+Finished job 31.
+10 of 94 steps (11%) done
+Removing temporary output results/dedup/B-2.bam.
+Select jobs to execute...
+
+[Wed Jul 13 19:04:59 2022]
+rule samtools_stats:
+    input: results/recal/B-2.bam
+    output: results/qc/samtools-stats/B-2.txt
+    log: logs/samtools-stats/B-2.log
+    jobid: 30
+    reason: Missing output files: results/qc/samtools-stats/B-2.txt; Input files updated by another job: results/recal/B-2.bam
+    wildcards: sample=B, unit=2
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/d3c18b7faef303e85ee20c974006beff
+Write-protecting output file results/recal/B-1.bam.
+[Wed Jul 13 19:05:01 2022]
+Finished job 25.
+11 of 94 steps (12%) done
+Removing temporary output results/dedup/B-1.bam.
+Select jobs to execute...
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XIV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XIV.log
+    jobid: 95
+    reason: Missing output files: results/called/B.XIV.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XIV
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XV.log
+    jobid: 99
+    reason: Missing output files: results/called/B.XV.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XV
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XVI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XVI.log
+    jobid: 103
+    reason: Missing output files: results/called/B.XVI.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XVI
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.VIII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.VIII.log
+    jobid: 71
+    reason: Missing output files: results/called/B.VIII.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=VIII
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.I.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.I.log
+    jobid: 43
+    reason: Missing output files: results/called/B.I.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=I
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.II.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.II.log
+    jobid: 47
+    reason: Missing output files: results/called/B.II.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=II
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.IX.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.IX.log
+    jobid: 75
+    reason: Missing output files: results/called/B.IX.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=IX
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.Mito.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.Mito.log
+    jobid: 107
+    reason: Missing output files: results/called/B.Mito.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=Mito
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XIII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XIII.log
+    jobid: 91
+    reason: Missing output files: results/called/B.XIII.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XIII
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.VI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.VI.log
+    jobid: 63
+    reason: Missing output files: results/called/B.VI.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=VI
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:05:01 2022]
+Finished job 30.
+12 of 94 steps (13%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:05:01 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XII.log
+    jobid: 87
+    reason: Missing output files: results/called/B.XII.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/recal/A-1.bam.
+[Wed Jul 13 19:05:21 2022]
+Finished job 14.
+13 of 94 steps (14%) done
+Removing temporary output results/dedup/A-1.bam.
+Select jobs to execute...
+
+[Wed Jul 13 19:05:21 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.VII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.VII.log
+    jobid: 67
+    reason: Missing output files: results/called/B.VII.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=VII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.Mito.g.vcf.gz.
+[Wed Jul 13 19:05:33 2022]
+Finished job 107.
+14 of 94 steps (15%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:05:33 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XIII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XIII.log
+    jobid: 90
+    reason: Missing output files: results/called/A.XIII.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.I.g.vcf.gz.
+[Wed Jul 13 19:05:58 2022]
+Finished job 43.
+15 of 94 steps (16%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:05:59 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XV.log
+    jobid: 98
+    reason: Missing output files: results/called/A.XV.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.VI.g.vcf.gz.
+[Wed Jul 13 19:06:04 2022]
+Finished job 63.
+16 of 94 steps (17%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:04 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.XI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.XI.log
+    jobid: 83
+    reason: Missing output files: results/called/B.XI.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=XI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.IX.g.vcf.gz.
+[Wed Jul 13 19:06:11 2022]
+Finished job 75.
+17 of 94 steps (18%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:11 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.II.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.II.log
+    jobid: 46
+    reason: Missing output files: results/called/A.II.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=II
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.VIII.g.vcf.gz.
+[Wed Jul 13 19:06:13 2022]
+Finished job 71.
+18 of 94 steps (19%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:13 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.Mito.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.Mito.log
+    jobid: 106
+    reason: Missing output files: results/called/A.Mito.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=Mito
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.II.g.vcf.gz.
+[Wed Jul 13 19:06:21 2022]
+Finished job 47.
+19 of 94 steps (20%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:22 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.IV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.IV.log
+    jobid: 54
+    reason: Missing output files: results/called/A.IV.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=IV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.XVI.g.vcf.gz.
+[Wed Jul 13 19:06:24 2022]
+Finished job 103.
+20 of 94 steps (21%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:24 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XI.log
+    jobid: 82
+    reason: Missing output files: results/called/A.XI.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.XIV.g.vcf.gz.
+[Wed Jul 13 19:06:28 2022]
+Finished job 95.
+21 of 94 steps (22%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:28 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.I.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.I.log
+    jobid: 42
+    reason: Missing output files: results/called/A.I.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=I
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.XIII.g.vcf.gz.
+[Wed Jul 13 19:06:29 2022]
+Finished job 91.
+22 of 94 steps (23%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:29 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XII.log
+    jobid: 86
+    reason: Missing output files: results/called/A.XII.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.XIII.g.vcf.gz.
+[Wed Jul 13 19:06:32 2022]
+Finished job 90.
+23 of 94 steps (24%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:33 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.V.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.V.log
+    jobid: 58
+    reason: Missing output files: results/called/A.V.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=V
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.XV.g.vcf.gz.
+[Wed Jul 13 19:06:36 2022]
+Finished job 99.
+24 of 94 steps (26%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:36 2022]
+rule samtools_stats:
+    input: results/recal/B-1.bam
+    output: results/qc/samtools-stats/B-1.txt
+    log: logs/samtools-stats/B-1.log
+    jobid: 24
+    reason: Missing output files: results/qc/samtools-stats/B-1.txt; Input files updated by another job: results/recal/B-1.bam
+    wildcards: sample=B, unit=1
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/d3c18b7faef303e85ee20c974006beff
+Write-protecting output file results/called/B.XII.g.vcf.gz.
+[Wed Jul 13 19:06:37 2022]
+Finished job 87.
+25 of 94 steps (27%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:37 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XVI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XVI.log
+    jobid: 102
+    reason: Missing output files: results/called/A.XVI.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XVI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+[Wed Jul 13 19:06:42 2022]
+Finished job 24.
+26 of 94 steps (28%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:42 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.V.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.V.log
+    jobid: 59
+    reason: Missing output files: results/called/B.V.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=V
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.Mito.g.vcf.gz.
+[Wed Jul 13 19:06:45 2022]
+Finished job 106.
+27 of 94 steps (29%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:45 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.VIII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.VIII.log
+    jobid: 70
+    reason: Missing output files: results/called/A.VIII.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=VIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.VII.g.vcf.gz.
+[Wed Jul 13 19:06:54 2022]
+Finished job 67.
+28 of 94 steps (30%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:06:54 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XIII.g.vcf.gz, results/called/B.XIII.g.vcf.gz
+    output: results/called/all.XIII.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XIII.log
+    jobid: 89
+    reason: Missing output files: results/called/all.XIII.g.vcf.gz; Input files updated by another job: results/called/A.XIII.g.vcf.gz, results/called/B.XIII.g.vcf.gz
+    wildcards: contig=XIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.II.g.vcf.gz.
+[Wed Jul 13 19:07:04 2022]
+Finished job 46.
+29 of 94 steps (31%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:11 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.IV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.IV.log
+    jobid: 55
+    reason: Missing output files: results/called/B.IV.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=IV
+    resources: tmpdir=/tmp
+
+Write-protecting output file results/called/A.I.g.vcf.gz.
+[Wed Jul 13 19:07:11 2022]
+Finished job 42.
+30 of 94 steps (32%) done
+Select jobs to execute...
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+
+[Wed Jul 13 19:07:11 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.III.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.III.log
+    jobid: 51
+    reason: Missing output files: results/called/B.III.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=III
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.XV.g.vcf.gz.
+[Wed Jul 13 19:07:17 2022]
+Finished job 98.
+31 of 94 steps (33%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:18 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.VII.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.VII.log
+    jobid: 66
+    reason: Missing output files: results/called/A.VII.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=VII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.V.g.vcf.gz.
+[Wed Jul 13 19:07:23 2022]
+Finished job 58.
+32 of 94 steps (34%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:23 2022]
+rule samtools_stats:
+    input: results/recal/A-1.bam
+    output: results/qc/samtools-stats/A-1.txt
+    log: logs/samtools-stats/A-1.log
+    jobid: 13
+    reason: Missing output files: results/qc/samtools-stats/A-1.txt; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, unit=1
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/d3c18b7faef303e85ee20c974006beff
+Write-protecting output file results/called/A.XI.g.vcf.gz.
+[Wed Jul 13 19:07:23 2022]
+Finished job 82.
+33 of 94 steps (35%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:23 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.III.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.III.log
+    jobid: 50
+    reason: Missing output files: results/called/A.III.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=III
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.XII.g.vcf.gz.
+[Wed Jul 13 19:07:26 2022]
+Finished job 86.
+34 of 94 steps (36%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:26 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.X.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.X.log
+    jobid: 78
+    reason: Missing output files: results/called/A.X.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=X
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.XI.g.vcf.gz.
+[Wed Jul 13 19:07:28 2022]
+Finished job 83.
+35 of 94 steps (37%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:28 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.IX.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.IX.log
+    jobid: 74
+    reason: Missing output files: results/called/A.IX.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=IX
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+[Wed Jul 13 19:07:29 2022]
+Finished job 13.
+36 of 94 steps (38%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:29 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XII.g.vcf.gz, results/called/B.XII.g.vcf.gz
+    output: results/called/all.XII.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XII.log
+    jobid: 85
+    reason: Missing output files: results/called/all.XII.g.vcf.gz; Input files updated by another job: results/called/B.XII.g.vcf.gz, results/called/A.XII.g.vcf.gz
+    wildcards: contig=XII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.IV.g.vcf.gz.
+[Wed Jul 13 19:07:30 2022]
+Finished job 54.
+37 of 94 steps (39%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:30 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XI.g.vcf.gz, results/called/B.XI.g.vcf.gz
+    output: results/called/all.XI.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XI.log
+    jobid: 81
+    reason: Missing output files: results/called/all.XI.g.vcf.gz; Input files updated by another job: results/called/A.XI.g.vcf.gz, results/called/B.XI.g.vcf.gz
+    wildcards: contig=XI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.XVI.g.vcf.gz.
+[Wed Jul 13 19:07:36 2022]
+Finished job 102.
+38 of 94 steps (40%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:36 2022]
+rule call_variants:
+    input: results/recal/B-1.bam, results/recal/B-2.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/B.X.g.vcf.gz
+    log: logs/gatk/haplotypecaller/B.X.log
+    jobid: 79
+    reason: Missing output files: results/called/B.X.g.vcf.gz; Input files updated by another job: results/recal/B-2.bam, results/recal/B-1.bam
+    wildcards: sample=B, contig=X
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:07:36 2022]
+Finished job 89.
+39 of 94 steps (41%) done
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Select jobs to execute...
+
+[Wed Jul 13 19:07:36 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.XIV.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.XIV.log
+    jobid: 94
+    reason: Missing output files: results/called/A.XIV.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=XIV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/A.VIII.g.vcf.gz.
+[Wed Jul 13 19:07:40 2022]
+Finished job 70.
+40 of 94 steps (43%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:40 2022]
+rule call_variants:
+    input: results/recal/A-1.bam, resources/genome.fasta, resources/genome.dict, resources/variation.noiupac.vcf.gz, resources/variation.noiupac.vcf.gz.tbi
+    output: results/called/A.VI.g.vcf.gz
+    log: logs/gatk/haplotypecaller/A.VI.log
+    jobid: 62
+    reason: Missing output files: results/called/A.VI.g.vcf.gz; Input files updated by another job: results/recal/A-1.bam
+    wildcards: sample=A, contig=VI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Write-protecting output file results/called/B.V.g.vcf.gz.
+[Wed Jul 13 19:07:57 2022]
+Finished job 59.
+41 of 94 steps (44%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:07:57 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.V.g.vcf.gz, results/called/B.V.g.vcf.gz
+    output: results/called/all.V.g.vcf.gz
+    log: logs/gatk/combinegvcfs.V.log
+    jobid: 57
+    reason: Missing output files: results/called/all.V.g.vcf.gz; Input files updated by another job: results/called/B.V.g.vcf.gz, results/called/A.V.g.vcf.gz
+    wildcards: contig=V
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.III.g.vcf.gz.
+[Wed Jul 13 19:08:00 2022]
+Finished job 50.
+42 of 94 steps (45%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:00 2022]
+rule multiqc:
+    input: results/qc/samtools-stats/A-1.txt, results/qc/samtools-stats/B-1.txt, results/qc/samtools-stats/B-2.txt
+    output: results/qc/multiqc.html
+    log: logs/multiqc.log
+    jobid: 12
+    reason: Missing output files: results/qc/multiqc.html; Input files updated by another job: results/qc/samtools-stats/A-1.txt, results/qc/samtools-stats/B-1.txt, results/qc/samtools-stats/B-2.txt
+    resources: tmpdir=/tmp
+
+Write-protecting output file results/called/B.III.g.vcf.gz.
+[Wed Jul 13 19:08:08 2022]
+Finished job 51.
+43 of 94 steps (46%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:08 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.III.g.vcf.gz, results/called/B.III.g.vcf.gz
+    output: results/called/all.III.g.vcf.gz
+    log: logs/gatk/combinegvcfs.III.log
+    jobid: 49
+    reason: Missing output files: results/called/all.III.g.vcf.gz; Input files updated by another job: results/called/B.III.g.vcf.gz, results/called/A.III.g.vcf.gz
+    wildcards: contig=III
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:11 2022]
+Finished job 81.
+44 of 94 steps (47%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:11 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.Mito.g.vcf.gz, results/called/B.Mito.g.vcf.gz
+    output: results/called/all.Mito.g.vcf.gz
+    log: logs/gatk/combinegvcfs.Mito.log
+    jobid: 105
+    reason: Missing output files: results/called/all.Mito.g.vcf.gz; Input files updated by another job: results/called/B.Mito.g.vcf.gz, results/called/A.Mito.g.vcf.gz
+    wildcards: contig=Mito
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:11 2022]
+Finished job 85.
+45 of 94 steps (48%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:11 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.II.g.vcf.gz, results/called/B.II.g.vcf.gz
+    output: results/called/all.II.g.vcf.gz
+    log: logs/gatk/combinegvcfs.II.log
+    jobid: 45
+    reason: Missing output files: results/called/all.II.g.vcf.gz; Input files updated by another job: results/called/A.II.g.vcf.gz, results/called/B.II.g.vcf.gz
+    wildcards: contig=II
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.VII.g.vcf.gz.
+[Wed Jul 13 19:08:14 2022]
+Finished job 66.
+46 of 94 steps (49%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:14 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.VII.g.vcf.gz, results/called/B.VII.g.vcf.gz
+    output: results/called/all.VII.g.vcf.gz
+    log: logs/gatk/combinegvcfs.VII.log
+    jobid: 65
+    reason: Missing output files: results/called/all.VII.g.vcf.gz; Input files updated by another job: results/called/A.VII.g.vcf.gz, results/called/B.VII.g.vcf.gz
+    wildcards: contig=VII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.IX.g.vcf.gz.
+[Wed Jul 13 19:08:15 2022]
+Finished job 74.
+47 of 94 steps (50%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:15 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.IX.g.vcf.gz, results/called/B.IX.g.vcf.gz
+    output: results/called/all.IX.g.vcf.gz
+    log: logs/gatk/combinegvcfs.IX.log
+    jobid: 73
+    reason: Missing output files: results/called/all.IX.g.vcf.gz; Input files updated by another job: results/called/A.IX.g.vcf.gz, results/called/B.IX.g.vcf.gz
+    wildcards: contig=IX
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.X.g.vcf.gz.
+[Wed Jul 13 19:08:19 2022]
+Finished job 78.
+48 of 94 steps (51%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:19 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XIII.g.vcf.gz
+    output: results/genotyped/all.XIII.vcf.gz
+    log: logs/gatk/genotypegvcfs.XIII.log
+    jobid: 88
+    reason: Missing output files: results/genotyped/all.XIII.vcf.gz; Input files updated by another job: results/called/all.XIII.g.vcf.gz
+    wildcards: contig=XIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Write-protecting output file results/called/A.VI.g.vcf.gz.
+[Wed Jul 13 19:08:27 2022]
+Finished job 62.
+49 of 94 steps (52%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:27 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.VI.g.vcf.gz, results/called/B.VI.g.vcf.gz
+    output: results/called/all.VI.g.vcf.gz
+    log: logs/gatk/combinegvcfs.VI.log
+    jobid: 61
+    reason: Missing output files: results/called/all.VI.g.vcf.gz; Input files updated by another job: results/called/A.VI.g.vcf.gz, results/called/B.VI.g.vcf.gz
+    wildcards: contig=VI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/A.XIV.g.vcf.gz.
+[Wed Jul 13 19:08:30 2022]
+Finished job 94.
+50 of 94 steps (53%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:30 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XIV.g.vcf.gz, results/called/B.XIV.g.vcf.gz
+    output: results/called/all.XIV.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XIV.log
+    jobid: 93
+    reason: Missing output files: results/called/all.XIV.g.vcf.gz; Input files updated by another job: results/called/B.XIV.g.vcf.gz, results/called/A.XIV.g.vcf.gz
+    wildcards: contig=XIV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:30 2022]
+Finished job 57.
+51 of 94 steps (54%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:30 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.V.g.vcf.gz
+    output: results/genotyped/all.V.vcf.gz
+    log: logs/gatk/genotypegvcfs.V.log
+    jobid: 56
+    reason: Missing output files: results/genotyped/all.V.vcf.gz; Input files updated by another job: results/called/all.V.g.vcf.gz
+    wildcards: contig=V
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:30 2022]
+Finished job 12.
+52 of 94 steps (55%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:31 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.VIII.g.vcf.gz, results/called/B.VIII.g.vcf.gz
+    output: results/called/all.VIII.g.vcf.gz
+    log: logs/gatk/combinegvcfs.VIII.log
+    jobid: 69
+    reason: Missing output files: results/called/all.VIII.g.vcf.gz; Input files updated by another job: results/called/A.VIII.g.vcf.gz, results/called/B.VIII.g.vcf.gz
+    wildcards: contig=VIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:32 2022]
+Finished job 105.
+53 of 94 steps (56%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:32 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.Mito.g.vcf.gz
+    output: results/genotyped/all.Mito.vcf.gz
+    log: logs/gatk/genotypegvcfs.Mito.log
+    jobid: 104
+    reason: Missing output files: results/genotyped/all.Mito.vcf.gz; Input files updated by another job: results/called/all.Mito.g.vcf.gz
+    wildcards: contig=Mito
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:36 2022]
+Finished job 49.
+54 of 94 steps (57%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:36 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.III.g.vcf.gz
+    output: results/genotyped/all.III.vcf.gz
+    log: logs/gatk/genotypegvcfs.III.log
+    jobid: 48
+    reason: Missing output files: results/genotyped/all.III.vcf.gz; Input files updated by another job: results/called/all.III.g.vcf.gz
+    wildcards: contig=III
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:42 2022]
+Finished job 73.
+55 of 94 steps (59%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:42 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.IX.g.vcf.gz
+    output: results/genotyped/all.IX.vcf.gz
+    log: logs/gatk/genotypegvcfs.IX.log
+    jobid: 72
+    reason: Missing output files: results/genotyped/all.IX.vcf.gz; Input files updated by another job: results/called/all.IX.g.vcf.gz
+    wildcards: contig=IX
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:44 2022]
+Finished job 45.
+56 of 94 steps (60%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:44 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.II.g.vcf.gz
+    output: results/genotyped/all.II.vcf.gz
+    log: logs/gatk/genotypegvcfs.II.log
+    jobid: 44
+    reason: Missing output files: results/genotyped/all.II.vcf.gz; Input files updated by another job: results/called/all.II.g.vcf.gz
+    wildcards: contig=II
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:46 2022]
+Finished job 65.
+57 of 94 steps (61%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:46 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.VII.g.vcf.gz
+    output: results/genotyped/all.VII.vcf.gz
+    log: logs/gatk/genotypegvcfs.VII.log
+    jobid: 64
+    reason: Missing output files: results/genotyped/all.VII.vcf.gz; Input files updated by another job: results/called/all.VII.g.vcf.gz
+    wildcards: contig=VII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Write-protecting output file results/called/B.X.g.vcf.gz.
+[Wed Jul 13 19:08:54 2022]
+Finished job 79.
+58 of 94 steps (62%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:54 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.X.g.vcf.gz, results/called/B.X.g.vcf.gz
+    output: results/called/all.X.g.vcf.gz
+    log: logs/gatk/combinegvcfs.X.log
+    jobid: 77
+    reason: Missing output files: results/called/all.X.g.vcf.gz; Input files updated by another job: results/called/B.X.g.vcf.gz, results/called/A.X.g.vcf.gz
+    wildcards: contig=X
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Write-protecting output file results/called/B.IV.g.vcf.gz.
+[Wed Jul 13 19:08:54 2022]
+Finished job 55.
+59 of 94 steps (63%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:55 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.IV.g.vcf.gz, results/called/B.IV.g.vcf.gz
+    output: results/called/all.IV.g.vcf.gz
+    log: logs/gatk/combinegvcfs.IV.log
+    jobid: 53
+    reason: Missing output files: results/called/all.IV.g.vcf.gz; Input files updated by another job: results/called/A.IV.g.vcf.gz, results/called/B.IV.g.vcf.gz
+    wildcards: contig=IV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:55 2022]
+Finished job 61.
+60 of 94 steps (64%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:55 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.VI.g.vcf.gz
+    output: results/genotyped/all.VI.vcf.gz
+    log: logs/gatk/genotypegvcfs.VI.log
+    jobid: 60
+    reason: Missing output files: results/genotyped/all.VI.vcf.gz; Input files updated by another job: results/called/all.VI.g.vcf.gz
+    wildcards: contig=VI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:58 2022]
+Finished job 93.
+61 of 94 steps (65%) done
+Select jobs to execute...
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+
+[Wed Jul 13 19:08:58 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XIV.g.vcf.gz
+    output: results/genotyped/all.XIV.vcf.gz
+    log: logs/gatk/genotypegvcfs.XIV.log
+    jobid: 92
+    reason: Missing output files: results/genotyped/all.XIV.vcf.gz; Input files updated by another job: results/called/all.XIV.g.vcf.gz
+    wildcards: contig=XIV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:08:59 2022]
+Finished job 56.
+62 of 94 steps (66%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:59 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.I.g.vcf.gz, results/called/B.I.g.vcf.gz
+    output: results/called/all.I.g.vcf.gz
+    log: logs/gatk/combinegvcfs.I.log
+    jobid: 41
+    reason: Missing output files: results/called/all.I.g.vcf.gz; Input files updated by another job: results/called/A.I.g.vcf.gz, results/called/B.I.g.vcf.gz
+    wildcards: contig=I
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:08:59 2022]
+Finished job 88.
+63 of 94 steps (67%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:08:59 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XVI.g.vcf.gz, results/called/B.XVI.g.vcf.gz
+    output: results/called/all.XVI.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XVI.log
+    jobid: 101
+    reason: Missing output files: results/called/all.XVI.g.vcf.gz; Input files updated by another job: results/called/B.XVI.g.vcf.gz, results/called/A.XVI.g.vcf.gz
+    wildcards: contig=XVI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:09:00 2022]
+Finished job 69.
+64 of 94 steps (68%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:00 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.VIII.g.vcf.gz
+    output: results/genotyped/all.VIII.vcf.gz
+    log: logs/gatk/genotypegvcfs.VIII.log
+    jobid: 68
+    reason: Missing output files: results/genotyped/all.VIII.vcf.gz; Input files updated by another job: results/called/all.VIII.g.vcf.gz
+    wildcards: contig=VIII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:00 2022]
+Finished job 104.
+65 of 94 steps (69%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:00 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XII.g.vcf.gz
+    output: results/genotyped/all.XII.vcf.gz
+    log: logs/gatk/genotypegvcfs.XII.log
+    jobid: 84
+    reason: Missing output files: results/genotyped/all.XII.vcf.gz; Input files updated by another job: results/called/all.XII.g.vcf.gz
+    wildcards: contig=XII
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:05 2022]
+Finished job 48.
+66 of 94 steps (70%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:06 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XI.g.vcf.gz
+    output: results/genotyped/all.XI.vcf.gz
+    log: logs/gatk/genotypegvcfs.XI.log
+    jobid: 80
+    reason: Missing output files: results/genotyped/all.XI.vcf.gz; Input files updated by another job: results/called/all.XI.g.vcf.gz
+    wildcards: contig=XI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:14 2022]
+Finished job 72.
+67 of 94 steps (71%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:14 2022]
+rule combine_calls:
+    input: resources/genome.fasta, results/called/A.XV.g.vcf.gz, results/called/B.XV.g.vcf.gz
+    output: results/called/all.XV.g.vcf.gz
+    log: logs/gatk/combinegvcfs.XV.log
+    jobid: 97
+    reason: Missing output files: results/called/all.XV.g.vcf.gz; Input files updated by another job: results/called/B.XV.g.vcf.gz, results/called/A.XV.g.vcf.gz
+    wildcards: contig=XV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:09:16 2022]
+Finished job 44.
+68 of 94 steps (72%) done
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:09:21 2022]
+Finished job 64.
+69 of 94 steps (73%) done
+[Wed Jul 13 19:09:25 2022]
+Finished job 60.
+70 of 94 steps (74%) done
+[Wed Jul 13 19:09:28 2022]
+Finished job 77.
+71 of 94 steps (76%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:28 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.X.g.vcf.gz
+    output: results/genotyped/all.X.vcf.gz
+    log: logs/gatk/genotypegvcfs.X.log
+    jobid: 76
+    reason: Missing output files: results/genotyped/all.X.vcf.gz; Input files updated by another job: results/called/all.X.g.vcf.gz
+    wildcards: contig=X
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:28 2022]
+Finished job 41.
+72 of 94 steps (77%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:28 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.I.g.vcf.gz
+    output: results/genotyped/all.I.vcf.gz
+    log: logs/gatk/genotypegvcfs.I.log
+    jobid: 40
+    reason: Missing output files: results/genotyped/all.I.vcf.gz; Input files updated by another job: results/called/all.I.g.vcf.gz
+    wildcards: contig=I
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:30 2022]
+Finished job 92.
+73 of 94 steps (78%) done
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:30 2022]
+Finished job 68.
+74 of 94 steps (79%) done
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:30 2022]
+Finished job 53.
+75 of 94 steps (80%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:30 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.IV.g.vcf.gz
+    output: results/genotyped/all.IV.vcf.gz
+    log: logs/gatk/genotypegvcfs.IV.log
+    jobid: 52
+    reason: Missing output files: results/genotyped/all.IV.vcf.gz; Input files updated by another job: results/called/all.IV.g.vcf.gz
+    wildcards: contig=IV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:31 2022]
+Finished job 84.
+76 of 94 steps (81%) done
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:32 2022]
+Finished job 101.
+77 of 94 steps (82%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:32 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XVI.g.vcf.gz
+    output: results/genotyped/all.XVI.vcf.gz
+    log: logs/gatk/genotypegvcfs.XVI.log
+    jobid: 100
+    reason: Missing output files: results/genotyped/all.XVI.vcf.gz; Input files updated by another job: results/called/all.XVI.g.vcf.gz
+    wildcards: contig=XVI
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:32 2022]
+Finished job 80.
+78 of 94 steps (83%) done
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:36 2022]
+Finished job 97.
+79 of 94 steps (84%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:36 2022]
+rule genotype_variants:
+    input: resources/genome.fasta, results/called/all.XV.g.vcf.gz
+    output: results/genotyped/all.XV.vcf.gz
+    log: logs/gatk/genotypegvcfs.XV.log
+    jobid: 96
+    reason: Missing output files: results/genotyped/all.XV.vcf.gz; Input files updated by another job: results/called/all.XV.g.vcf.gz
+    wildcards: contig=XV
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+Activating conda environment: ../../../../conda_envs/874475ec9450fbcb2ac13b0adb27dc0f
+[Wed Jul 13 19:09:39 2022]
+Finished job 40.
+80 of 94 steps (85%) done
+[Wed Jul 13 19:09:40 2022]
+Finished job 76.
+81 of 94 steps (86%) done
+[Wed Jul 13 19:09:41 2022]
+Finished job 52.
+82 of 94 steps (87%) done
+[Wed Jul 13 19:09:42 2022]
+Finished job 100.
+83 of 94 steps (88%) done
+[Wed Jul 13 19:09:44 2022]
+Finished job 96.
+84 of 94 steps (89%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:09:44 2022]
+rule merge_variants:
+    input: results/genotyped/all.I.vcf.gz, results/genotyped/all.II.vcf.gz, results/genotyped/all.III.vcf.gz, results/genotyped/all.IV.vcf.gz, results/genotyped/all.V.vcf.gz, results/genotyped/all.VI.vcf.gz, results/genotyped/all.VII.vcf.gz, results/genotyped/all.VIII.vcf.gz, results/genotyped/all.IX.vcf.gz, results/genotyped/all.X.vcf.gz, results/genotyped/all.XI.vcf.gz, results/genotyped/all.XII.vcf.gz, results/genotyped/all.XIII.vcf.gz, results/genotyped/all.XIV.vcf.gz, results/genotyped/all.XV.vcf.gz, results/genotyped/all.XVI.vcf.gz, results/genotyped/all.Mito.vcf.gz
+    output: results/genotyped/all.vcf.gz
+    log: logs/picard/merge-genotyped.log
+    jobid: 6
+    reason: Missing output files: results/genotyped/all.vcf.gz; Input files updated by another job: results/genotyped/all.IV.vcf.gz, results/genotyped/all.XI.vcf.gz, results/genotyped/all.XIV.vcf.gz, results/genotyped/all.XV.vcf.gz, results/genotyped/all.VII.vcf.gz, results/genotyped/all.V.vcf.gz, results/genotyped/all.II.vcf.gz, results/genotyped/all.IX.vcf.gz, results/genotyped/all.VIII.vcf.gz, results/genotyped/all.XII.vcf.gz, results/genotyped/all.VI.vcf.gz, results/genotyped/all.Mito.vcf.gz, results/genotyped/all.X.vcf.gz, results/genotyped/all.XIII.vcf.gz, results/genotyped/all.XVI.vcf.gz, results/genotyped/all.I.vcf.gz, results/genotyped/all.III.vcf.gz
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+[Wed Jul 13 19:10:00 2022]
+Finished job 6.
+85 of 94 steps (90%) done
+Removing temporary output results/genotyped/all.I.vcf.gz.
+Removing temporary output results/genotyped/all.II.vcf.gz.
+Removing temporary output results/genotyped/all.III.vcf.gz.
+Removing temporary output results/genotyped/all.IV.vcf.gz.
+Removing temporary output results/genotyped/all.V.vcf.gz.
+Removing temporary output results/genotyped/all.VI.vcf.gz.
+Removing temporary output results/genotyped/all.VII.vcf.gz.
+Removing temporary output results/genotyped/all.VIII.vcf.gz.
+Removing temporary output results/genotyped/all.IX.vcf.gz.
+Removing temporary output results/genotyped/all.X.vcf.gz.
+Removing temporary output results/genotyped/all.XI.vcf.gz.
+Removing temporary output results/genotyped/all.XII.vcf.gz.
+Removing temporary output results/genotyped/all.XIII.vcf.gz.
+Removing temporary output results/genotyped/all.XIV.vcf.gz.
+Removing temporary output results/genotyped/all.XV.vcf.gz.
+Removing temporary output results/genotyped/all.XVI.vcf.gz.
+Removing temporary output results/genotyped/all.Mito.vcf.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:10:00 2022]
+rule select_calls:
+    input: resources/genome.fasta, results/genotyped/all.vcf.gz
+    output: results/filtered/all.indels.vcf.gz
+    log: logs/gatk/selectvariants/indels.log
+    jobid: 9
+    reason: Missing output files: results/filtered/all.indels.vcf.gz; Input files updated by another job: results/genotyped/all.vcf.gz
+    wildcards: vartype=indels
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:10:00 2022]
+rule select_calls:
+    input: resources/genome.fasta, results/genotyped/all.vcf.gz
+    output: results/filtered/all.snvs.vcf.gz
+    log: logs/gatk/selectvariants/snvs.log
+    jobid: 5
+    reason: Missing output files: results/filtered/all.snvs.vcf.gz; Input files updated by another job: results/genotyped/all.vcf.gz
+    wildcards: vartype=snvs
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+Activating conda environment: ../../../../conda_envs/dcfdb462d457174b178adfac97b3d10b
+[Wed Jul 13 19:10:14 2022]
+Finished job 9.
+86 of 94 steps (91%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:10:15 2022]
+rule hard_filter_calls:
+    input: resources/genome.fasta, results/filtered/all.indels.vcf.gz
+    output: results/filtered/all.indels.hardfiltered.vcf.gz
+    log: logs/gatk/variantfiltration/indels.log
+    jobid: 8
+    reason: Missing output files: results/filtered/all.indels.hardfiltered.vcf.gz; Input files updated by another job: results/filtered/all.indels.vcf.gz
+    wildcards: vartype=indels
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:10:15 2022]
+Finished job 5.
+87 of 94 steps (93%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:10:15 2022]
+rule hard_filter_calls:
+    input: resources/genome.fasta, results/filtered/all.snvs.vcf.gz
+    output: results/filtered/all.snvs.hardfiltered.vcf.gz
+    log: logs/gatk/variantfiltration/snvs.log
+    jobid: 3
+    reason: Missing output files: results/filtered/all.snvs.hardfiltered.vcf.gz; Input files updated by another job: results/filtered/all.snvs.vcf.gz
+    wildcards: vartype=snvs
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+Activating conda environment: ../../../../conda_envs/9895bac3e72b4b3452f644e11a74d608
+[Wed Jul 13 19:10:22 2022]
+Finished job 8.
+88 of 94 steps (94%) done
+Removing temporary output results/filtered/all.indels.vcf.gz.
+[Wed Jul 13 19:10:23 2022]
+Finished job 3.
+89 of 94 steps (95%) done
+Removing temporary output results/filtered/all.snvs.vcf.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:10:23 2022]
+rule merge_calls:
+    input: results/filtered/all.snvs.hardfiltered.vcf.gz, results/filtered/all.indels.hardfiltered.vcf.gz
+    output: results/filtered/all.vcf.gz
+    log: logs/picard/merge-filtered.log
+    jobid: 2
+    reason: Missing output files: results/filtered/all.vcf.gz; Input files updated by another job: results/filtered/all.snvs.hardfiltered.vcf.gz, results/filtered/all.indels.hardfiltered.vcf.gz
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+Activating conda environment: ../../../../conda_envs/99ffc4109d610ca0674c99d8aa11d5a8
+[Wed Jul 13 19:10:29 2022]
+Finished job 2.
+90 of 94 steps (96%) done
+Removing temporary output results/filtered/all.snvs.hardfiltered.vcf.gz.
+Removing temporary output results/filtered/all.indels.hardfiltered.vcf.gz.
+Select jobs to execute...
+
+[Wed Jul 13 19:10:29 2022]
+rule annotate_variants:
+    input: results/filtered/all.vcf.gz, resources/vep/cache, resources/vep/plugins
+    output: results/annotated/all.vcf.gz, results/stats/all.stats.html
+    log: logs/vep/annotate.log
+    jobid: 1
+    reason: Missing output files: results/annotated/all.vcf.gz; Input files updated by another job: results/filtered/all.vcf.gz
+    threads: 4
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/2c2f6d3a6010a1d85a22f2245474a41f
+Activating conda environment: ../../../../conda_envs/2c2f6d3a6010a1d85a22f2245474a41f
+[Wed Jul 13 19:10:41 2022]
+Finished job 1.
+91 of 94 steps (97%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:10:41 2022]
+rule vcf_to_tsv:
+    input: results/annotated/all.vcf.gz
+    output: results/tables/calls.tsv.gz
+    log: logs/vcf-to-tsv.log
+    jobid: 37
+    reason: Missing output files: results/tables/calls.tsv.gz; Input files updated by another job: results/annotated/all.vcf.gz
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/79c48dddee174f3785b04a80e1ed38fd
+[Wed Jul 13 19:10:42 2022]
+Finished job 37.
+92 of 94 steps (98%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:10:42 2022]
+rule plot_stats:
+    input: results/tables/calls.tsv.gz
+    output: results/plots/depths.svg, results/plots/allele-freqs.svg
+    log: logs/plot-stats.log
+    jobid: 36
+    reason: Missing output files: results/plots/allele-freqs.svg, results/plots/depths.svg; Input files updated by another job: results/tables/calls.tsv.gz
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../../../conda_envs/fbb4a009ba49a499358829878288bf67
+Environment defines Python version < 3.7. Using Python of the main process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.7 only.
+Activating conda environment: ../../../../conda_envs/fbb4a009ba49a499358829878288bf67
+[Wed Jul 13 19:10:51 2022]
+Finished job 36.
+93 of 94 steps (99%) done
+Select jobs to execute...
+
+[Wed Jul 13 19:10:51 2022]
+localrule all:
+    input: results/annotated/all.vcf.gz, results/qc/multiqc.html, results/plots/depths.svg, results/plots/allele-freqs.svg
+    jobid: 0
+    reason: Input files updated by another job: results/annotated/all.vcf.gz, results/plots/allele-freqs.svg, results/plots/depths.svg, results/qc/multiqc.html
+    resources: tmpdir=/tmp
+
+[Wed Jul 13 19:10:51 2022]
+Finished job 0.
+94 of 94 steps (100%) done
+Complete log: .snakemake/log/2022-07-13T190409.624807.snakemake.log

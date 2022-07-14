@@ -1,0 +1,5 @@
+TrimmomaticPE: Started with arguments:
+ -threads 1 -trimlog results/trimmed/A-1.trimlog.txt data/reads.1.fq.gz data/reads.2.fq.gz results/trimmed/A-1.1.fastq.gz results/trimmed/A-1.1.unpaired.fastq.gz results/trimmed/A-1.2.fastq.gz results/trimmed/A-1.2.unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+Quality encoding detected as phred33
+Input Read Pairs: 50000 Both Surviving: 50000 (100.00%) Forward Only Surviving: 0 (0.00%) Reverse Only Surviving: 0 (0.00%) Dropped: 0 (0.00%)
+TrimmomaticPE: Completed successfully

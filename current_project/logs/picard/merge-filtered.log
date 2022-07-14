@@ -1,0 +1,18 @@
+INFO	2022-07-13 19:10:28	MergeVcfs	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    MergeVcfs -INPUT results/filtered/all.snvs.hardfiltered.vcf.gz -INPUT results/filtered/all.indels.hardfiltered.vcf.gz -OUTPUT results/filtered/all.vcf.gz
+**********
+
+
+19:10:29.107 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/home-local/conda_envs/99ffc4109d610ca0674c99d8aa11d5a8/share/picard-2.22.1-0/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Wed Jul 13 19:10:29 MSK 2022] MergeVcfs INPUT=[results/filtered/all.snvs.hardfiltered.vcf.gz, results/filtered/all.indels.hardfiltered.vcf.gz] OUTPUT=results/filtered/all.vcf.gz    VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=true CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Wed Jul 13 19:10:29 MSK 2022] Executing as user@cbaipipelines3 on Linux 5.15.0-40-generic amd64; OpenJDK 64-Bit Server VM 11.0.15-internal+0-adhoc..src; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.22.1
+[Wed Jul 13 19:10:29 MSK 2022] picard.vcf.MergeVcfs done. Elapsed time: 0.01 minutes.
+Runtime.totalMemory()=536870912

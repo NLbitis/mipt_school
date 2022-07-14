@@ -1,0 +1,19 @@
+ - getting list of available cache files
+ - downloading ftp://ftp.ensembl.org/pub/release-98/variation/indexed_vep_cache/saccharomyces_cerevisiae_vep_98_R64-1-1.tar.gz
+ - unpacking saccharomyces_cerevisiae_vep_98_R64-1-1.tar.gz
+ - converting cache, this may take some time but will allow VEP to look up variants and frequency data much faster
+ - use CTRL-C to cancel if you do not wish to convert this cache now (you may run convert_cache.pl later)
+Possible precedence issue with control flow operator at /home-local/conda_envs/3eb7a9a9aff93d46cdc9ba10a5ca16c8/lib/site_perl/5.26.2/Bio/DB/IndexedBase.pm line 805.
+2022-07-13 18:44:52 - Processing saccharomyces_cerevisiae
+2022-07-13 18:44:52 - Processing version 98_R64-1-1
+2022-07-13 18:44:52 - No unprocessed types remaining, skipping
+2022-07-13 18:44:52 - All done!
+ - downloading Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz
+ - downloading Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz.fai
+ - downloading Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz.gzi
+
+The FASTA file should be automatically detected by the VEP when using --cache or --offline.
+If it is not, use "--fasta resources/vep/cache/saccharomyces_cerevisiae/98_R64-1-1/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz"
+
+
+All done
